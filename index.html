@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worttrainer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-container">
+        <h2>Anmelden</h2>
+        <input type="text" id="username" placeholder="Benutzername">
+        <input type="password" id="password" placeholder="Passwort">
+        <button id="login-btn">Anmelden</button>
+        <button id="register-btn">Registrieren</button>
+    </div>
+
+    <div id="start-container" style="display: none;">
+        <h2>Worttrainer</h2>
+        <button data-category="nomen">Nomen trainieren</button>
+        <button data-category="verben">Verben trainieren</button>
+        <button data-category="adjektive">Adjektive trainieren</button>
+        <button data-category="weitere">Weitere Wörter trainieren</button>
+        <button data-category="top100">Top 100 häufigste Wörter</button>
+        <button id="logout-btn">Abmelden</button>
+    </div>
+
+    <div id="training-container" style="display: none;">
+        <h2>Training</h2>
+        <div id="training-sections"></div>
+        <button id="back-to-start-btn">Zurück zum Start</button>
+    </div>
+
+    <div id="exercise-container" style="display: none;">
+        <h2 id="exercise-title">Übung</h2>
+        <p id="word-display"></p>
+        <p id="sentence-display" style="text-align: center;"></p>
+        <input type="text" id="answer-input" style="display: block; margin-left: auto; margin-right: auto;">
+        <p id="feedback-display" style="text-align: center;"></p>
+        <button id="check-answer-btn">Prüfen</button>
+        <button id="next-word-btn" style="display: none;">Nächstes Wort</button>
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="progress-text">Fortschritt: <span id="correct-count">0</span> / <span id="total-in-part">0</span></div>
+        <button id="back-to-training-btn">Zurück zum Training</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
