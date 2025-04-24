@@ -274,6 +274,7 @@ function startExercise(sectionIndex, wordsPerPage) {
 }
 
 function showWord() {
+    console.log('showWord() aufgerufen. currentWordIndex:', currentWordIndex, 'currentWords.length:', currentWords.length); // HINZUGEFÜGT
     if (currentWordIndex < currentWords.length) {
         const currentWordData = currentWords[currentWordIndex];
         wordDisplay.textContent = currentWordData.word;
@@ -287,14 +288,15 @@ function showWord() {
             wordShown = false;
         }, 5000);
     } else {
+        console.log('ALLE WÖRTER BEANTWORTET. Rufe showResults() auf.'); // HINZUGEFÜGT
         showResults();
     }
 }
 
 document.getElementById('check-answer-btn').addEventListener('click', () => {
     console.log('Prüfen-Button wurde geklickt!');
-    console.log('  currentWordIndex:', currentWordIndex);
-    console.log('  currentWords:', currentWords);
+    console.log('  currentWordIndex (vor Prüfung):', currentWordIndex); // HINZUGEFÜGT
+    console.log('  currentWords.length (bei Prüfung):', currentWords.length); // HINZUGEFÜGT
     if (wordShown) {
         return;
     }
@@ -306,26 +308,28 @@ document.getElementById('check-answer-btn').addEventListener('click', () => {
         feedbackDisplay.textContent = 'Richtig!';
         feedbackDisplay.className = 'correct';
         correctAnswers++;
-        partCorrectCount++; // Inkrementiere den Zähler für den aktuellen Teil
-        answerHistory.push('correct'); // Speichere das Ergebnis für den Fortschrittsbalken
+        partCorrectCount++;
+        answerHistory.push('correct');
     } else {
         feedbackDisplay.textContent = `Falsch! Richtig wäre: ${currentWords[currentWordIndex].word}`;
         feedbackDisplay.className = 'incorrect';
-        answerHistory.push('incorrect'); // Speichere das Ergebnis für den Fortschrittsbalken
+        answerHistory.push('incorrect');
     }
-    updateProgressBar(); // Aktualisiere den Fortschrittsbalken
-    updateProgressText(); // Aktualisiere den Fortschrittszähler
+    updateProgressBar();
+    updateProgressText();
     setTimeout(() => {
         sentenceDisplay.textContent = "";
         feedbackDisplay.textContent = "";
         answerInput.style.display = 'none';
         currentWordIndex++;
+        console.log('  currentWordIndex (nach Timeout):', currentWordIndex); // HINZUGEFÜGT
         showWord();
     }, 2000);
 });
 
 document.getElementById('next-word-btn').addEventListener('click', () => {
     currentWordIndex++;
+    console.log('Nächstes Wort geklickt. currentWordIndex:', currentWordIndex); // HINZUGEFÜGT
     showWord();
 });
 
