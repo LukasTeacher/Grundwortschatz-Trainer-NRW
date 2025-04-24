@@ -390,7 +390,7 @@ function updateProgressText() {
 }
 
 function showResults() {
-    alert(`Du hast ${correctAnswers} von ${currentWords.length} WÃ¶rtern richtig.`);
+    alert(`Du hast ${correctAnswers} von ${currentWords.length} Wörtern richtig.`);
     exerciseContainer.style.display = 'none';
     trainingContainer.style.display = 'block';
 }
