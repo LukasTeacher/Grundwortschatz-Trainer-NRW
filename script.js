@@ -376,34 +376,34 @@ function updateProgressText() {
 }
 
 function showResults() {
-    console.log('showResults() wird ausgeführt.');
+    alert(`Du hast ${correctAnswers} von ${currentWords.length} WÃ¶rtern richtig.`);
     exerciseContainer.style.display = 'none';
-    trainingContainer.innerHTML = ''; // Leere den vorherigen Inhalt des Training-Containers
     trainingContainer.style.display = 'block';
-
-    const resultsContainer = document.createElement('div');
-    resultsContainer.id = 'results-container';
-
-    const title = document.createElement('h2');
-    title.textContent = 'Ergebnisse des Teils';
-    resultsContainer.appendChild(title);
-
-    currentWords.forEach((wordData, index) => {
-        const wordResult = document.createElement('p');
-        wordResult.textContent = `${wordData.word}: `;
-        const resultSpan = document.createElement('span');
-        const answer = answerHistory[index];
-        if (answer === 'correct') {
-            resultSpan.textContent = 'Richtig';
-            resultSpan.style.color = 'green';
-        } else {
-            resultSpan.textContent = 'Falsch';
-            resultSpan.style.color = 'red';
-        }
-        wordResult.appendChild(resultSpan);
-        resultsContainer.appendChild(wordResult);
-    });
-
-    trainingContainer.appendChild(resultsContainer);
-    console.log('resultsContainer zum trainingContainer hinzugefügt:', resultsContainer, 'trainingContainer display:', trainingContainer.style.display);
 }
+
+document.getElementById('back-to-start-btn').addEventListener('click', () => {
+    trainingContainer.style.display = 'none';
+    startContainer.style.display = 'block';
+});
+
+document.getElementById('back-to-training-btn').addEventListener('click', () => {
+    exerciseContainer.style.display = 'none';
+    trainingContainer.style.display = 'block';
+    sentenceDisplay.textContent = "";
+    answerInput.style.display = 'none';
+    feedbackDisplay.textContent = "";
+    wordDisplay.textContent = "";
+    wordShown = false;
+    currentWords = wordData[currentCategory];
+    showTrainingSections();
+    console.log('ZurÃ¼ck zum Training. currentWords:', currentWords);
+});
+
+trainingSections.addEventListener('click', (event) => {
+    if (event.target.tagName === 'BUTTON' && event.target.dataset.section) {
+        const sectionIndex = parseInt(event.target.dataset.section);
+        const wordsPerPage = 10;
+        console.log('Teil-Button geklickt. Starte Teil:', sectionIndex + 1, 'sectionIndex:', sectionIndex);
+        startExercise(sectionIndex, wordsPerPage);
+    }
+});
