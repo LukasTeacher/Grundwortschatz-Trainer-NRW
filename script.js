@@ -297,6 +297,8 @@ document.getElementById('check-answer-btn').addEventListener('click', () => {
     const checkButton = document.getElementById('check-answer-btn');
     checkButton.disabled = true;
 
+    console.log('Prüfen-Button geklickt. currentWordIndex:', currentWordIndex, 'currentWords.length:', currentWords.length); // ERWEITERT
+
     if (wordShown) {
         return;
     }
@@ -320,7 +322,7 @@ document.getElementById('check-answer-btn').addEventListener('click', () => {
 
     // Überprüfe, ob dies das letzte Wort war
     if (currentWordIndex === currentWords.length - 1) {
-        console.log('LETZTES WORT BEANTWORTET. Rufe showResults() direkt auf.');
+        console.log('LETZTES WORT ERREICHT. Rufe showResults() direkt auf.');
         showResults();
         checkButton.disabled = false; // Re-enable button if needed after results
     } else {
