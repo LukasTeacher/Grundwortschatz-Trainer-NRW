@@ -376,73 +376,34 @@ function updateProgressText() {
 }
 
 function showResults() {
-    console.log('showResults() wird ausgeführt.'); // HINZUGEFÜGT
+    console.log('showResults() wird ausgeführt.');
     exerciseContainer.style.display = 'none';
+    trainingContainer.innerHTML = ''; // Leere den vorherigen Inhalt des Training-Containers
+    trainingContainer.style.display = 'block';
+
     const resultsContainer = document.createElement('div');
     resultsContainer.id = 'results-container';
-    console.log('resultsContainer erstellt:', resultsContainer); // HINZUGEFÜGT
 
     const title = document.createElement('h2');
     title.textContent = 'Ergebnisse des Teils';
     resultsContainer.appendChild(title);
-    console.log('Titel hinzugefügt:', title, 'zum resultsContainer:', resultsContainer); // HINZUGEFÜGT
 
-    const table = document.createElement('table');
-    const thead = document.createElement('thead');
-    const headerRow = document.createElement('tr');
-    const wordHeader = document.createElement('th');
-    wordHeader.textContent = 'Wort';
-    const resultHeader = document.createElement('th');
-    resultHeader.textContent = 'Ergebnis';
-    const correctionHeader = document.createElement('th');
-    correctionHeader.textContent = 'Korrektur (falsche Wörter)';
-    headerRow.appendChild(wordHeader);
-    headerRow.appendChild(resultHeader);
-    headerRow.appendChild(correctionHeader);
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
-    console.log('Tabellenkopf erstellt:', thead, 'zur Tabelle:', table); // HINZUGEFÜGT
-
-    const tbody = document.createElement('tbody');
-    console.log('currentWords vor Schleife:', currentWords); // HINZUGEFÜGT
     currentWords.forEach((wordData, index) => {
-        console.log('Verarbeite Wort:', wordData.word, 'Index:', index, 'Antwort:', answerHistory[index]); // HINZUGEFÜGT
-        const row = document.createElement('tr');
-        const wordCell = document.createElement('td');
-        wordCell.textContent = wordData.word;
-        const resultCell = document.createElement('td');
+        const wordResult = document.createElement('p');
+        wordResult.textContent = `${wordData.word}: `;
+        const resultSpan = document.createElement('span');
         const answer = answerHistory[index];
         if (answer === 'correct') {
-            resultCell.textContent = 'Richtig';
-            resultCell.style.color = 'green';
+            resultSpan.textContent = 'Richtig';
+            resultSpan.style.color = 'green';
         } else {
-            resultCell.textContent = 'Falsch';
-            resultCell.style.color = 'red';
+            resultSpan.textContent = 'Falsch';
+            resultSpan.style.color = 'red';
         }
-        const correctionCell = document.createElement('td');
-        if (answer === 'incorrect') {
-            const correctionInput = document.createElement('input');
-            correctionInput.type = 'text';
-            correctionInput.placeholder = 'Richtiges Wort';
-            correctionCell.appendChild(correctionInput);
-        }
-        row.appendChild(wordCell);
-        row.appendChild(resultCell);
-        row.appendChild(correctionCell);
-        tbody.appendChild(row);
-        console.log('Zeile erstellt:', row, 'zum tbody:', tbody); // HINZUGEFÜGT
+        wordResult.appendChild(resultSpan);
+        resultsContainer.appendChild(wordResult);
     });
-    table.appendChild(tbody);
-    resultsContainer.appendChild(table);
-    console.log('Tabelle zum resultsContainer hinzugefügt:', table, 'zu:', resultsContainer); // HINZUGEFÜGT
-
-    const continueBtn = document.createElement('button');
-    continueBtn.textContent = 'Weiter zum Spiel!';
-    continueBtn.addEventListener('click', showDesktopGameOptions); // Auskommentieren
-    resultsContainer.appendChild(continueBtn);
-    console.log('Button hinzugefügt:', continueBtn, 'zum resultsContainer:', resultsContainer); // HINZUGEFÜGT
 
     trainingContainer.appendChild(resultsContainer);
-    trainingContainer.style.display = 'block';
-    console.log('resultsContainer zum trainingContainer hinzugefügt:', resultsContainer, 'trainingContainer display:', trainingContainer.style.display); // HINZUGEFÜGT
+    console.log('resultsContainer zum trainingContainer hinzugefügt:', resultsContainer, 'trainingContainer display:', trainingContainer.style.display);
 }
