@@ -361,34 +361,63 @@ function updateProgressText() {
 }
 
 function showResults() {
-    alert(`Du hast ${correctAnswers} von ${currentWords.length} Wörtern richtig.`);
     exerciseContainer.style.display = 'none';
+    const resultsContainer = document.createElement('div');
+    resultsContainer.id = 'results-container';
+
+    const title = document.createElement('h2');
+    title.textContent = 'Ergebnisse des Teils';
+    resultsContainer.appendChild(title);
+
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    const wordHeader = document.createElement('th');
+    wordHeader.textContent = 'Wort';
+    const resultHeader = document.createElement('th');
+    resultHeader.textContent = 'Ergebnis';
+    const correctionHeader = document.createElement('th');
+    correctionHeader.textContent = 'Korrektur (falsche Wörter)';
+    headerRow.appendChild(wordHeader);
+    headerRow.appendChild(resultHeader);
+    headerRow.appendChild(correctionHeader);
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    currentWords.forEach((wordData, index) => {
+        const row = document.createElement('tr');
+        const wordCell = document.createElement('td');
+        wordCell.textContent = wordData.word;
+        const resultCell = document.createElement('td');
+        const answer = answerHistory[index];
+        if (answer === 'correct') {
+            resultCell.textContent = 'Richtig';
+            resultCell.style.color = 'green';
+        } else {
+            resultCell.textContent = 'Falsch';
+            resultCell.style.color = 'red';
+        }
+        const correctionCell = document.createElement('td');
+        if (answer === 'incorrect') {
+            const correctionInput = document.createElement('input');
+            correctionInput.type = 'text';
+            correctionInput.placeholder = 'Richtiges Wort';
+            correctionCell.appendChild(correctionInput);
+        }
+        row.appendChild(wordCell);
+        row.appendChild(resultCell);
+        row.appendChild(correctionCell);
+        tbody.appendChild(row);
+    });
+    table.appendChild(tbody);
+    resultsContainer.appendChild(table);
+
+    const continueBtn = document.createElement('button');
+    continueBtn.textContent = 'Weiter zum Spiel!';
+    continueBtn.addEventListener('click', showDesktopGameOptions); // Funktion für die Spielauswahl
+    resultsContainer.appendChild(continueBtn);
+
+    trainingContainer.appendChild(resultsContainer); // Füge die Tabelle zum Training-Container hinzu
     trainingContainer.style.display = 'block';
 }
-
-document.getElementById('back-to-start-btn').addEventListener('click', () => {
-    trainingContainer.style.display = 'none';
-    startContainer.style.display = 'block';
-});
-
-document.getElementById('back-to-training-btn').addEventListener('click', () => {
-    exerciseContainer.style.display = 'none';
-    trainingContainer.style.display = 'block';
-    sentenceDisplay.textContent = "";
-    answerInput.style.display = 'none';
-    feedbackDisplay.textContent = "";
-    wordDisplay.textContent = "";
-    wordShown = false;
-    currentWords = wordData[currentCategory];
-    showTrainingSections();
-    console.log('Zurück zum Training. currentWords:', currentWords);
-});
-
-trainingSections.addEventListener('click', (event) => {
-    if (event.target.tagName === 'BUTTON' && event.target.dataset.section) {
-        const sectionIndex = parseInt(event.target.dataset.section);
-        const wordsPerPage = 10;
-        console.log('Teil-Button geklickt. Starte Teil:', sectionIndex + 1, 'sectionIndex:', sectionIndex);
-        startExercise(sectionIndex, wordsPerPage);
-    }
-});
