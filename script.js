@@ -376,13 +376,16 @@ function updateProgressText() {
 }
 
 function showResults() {
+    console.log('showResults() wird ausgeführt.'); // HINZUGEFÜGT
     exerciseContainer.style.display = 'none';
     const resultsContainer = document.createElement('div');
     resultsContainer.id = 'results-container';
+    console.log('resultsContainer erstellt:', resultsContainer); // HINZUGEFÜGT
 
     const title = document.createElement('h2');
     title.textContent = 'Ergebnisse des Teils';
     resultsContainer.appendChild(title);
+    console.log('Titel hinzugefügt:', title, 'zum resultsContainer:', resultsContainer); // HINZUGEFÜGT
 
     const table = document.createElement('table');
     const thead = document.createElement('thead');
@@ -398,9 +401,12 @@ function showResults() {
     headerRow.appendChild(correctionHeader);
     thead.appendChild(headerRow);
     table.appendChild(thead);
+    console.log('Tabellenkopf erstellt:', thead, 'zur Tabelle:', table); // HINZUGEFÜGT
 
     const tbody = document.createElement('tbody');
+    console.log('currentWords vor Schleife:', currentWords); // HINZUGEFÜGT
     currentWords.forEach((wordData, index) => {
+        console.log('Verarbeite Wort:', wordData.word, 'Index:', index, 'Antwort:', answerHistory[index]); // HINZUGEFÜGT
         const row = document.createElement('tr');
         const wordCell = document.createElement('td');
         wordCell.textContent = wordData.word;
@@ -424,15 +430,19 @@ function showResults() {
         row.appendChild(resultCell);
         row.appendChild(correctionCell);
         tbody.appendChild(row);
+        console.log('Zeile erstellt:', row, 'zum tbody:', tbody); // HINZUGEFÜGT
     });
     table.appendChild(tbody);
     resultsContainer.appendChild(table);
+    console.log('Tabelle zum resultsContainer hinzugefügt:', table, 'zu:', resultsContainer); // HINZUGEFÜGT
 
     const continueBtn = document.createElement('button');
     continueBtn.textContent = 'Weiter zum Spiel!';
-    continueBtn.addEventListener('click', showDesktopGameOptions); // Funktion für die Spielauswahl
+    continueBtn.addEventListener('click', showDesktopGameOptions);
     resultsContainer.appendChild(continueBtn);
+    console.log('Button hinzugefügt:', continueBtn, 'zum resultsContainer:', resultsContainer); // HINZUGEFÜGT
 
-    trainingContainer.appendChild(resultsContainer); // Füge die Tabelle zum Training-Container hinzu
+    trainingContainer.appendChild(resultsContainer);
     trainingContainer.style.display = 'block';
+    console.log('resultsContainer zum trainingContainer hinzugefügt:', resultsContainer, 'trainingContainer display:', trainingContainer.style.display); // HINZUGEFÜGT
 }
