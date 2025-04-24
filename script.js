@@ -330,24 +330,27 @@ document.getElementById('next-word-btn').addEventListener('click', () => {
 });
 
 function updateProgressBar() {
-    const progressBarElement = document.getElementById('progress-bar');
-    if (progressBarElement && partTotalWords > 0) {
-        progressBarElement.innerHTML = ''; // Leere den vorherigen Inhalt
-        const wordWidthPercentage = 100 / partTotalWords;
-        answerHistory.forEach(result => {
-            const span = document.createElement('span');
-            span.style.width = `${wordWidthPercentage}%`;
-            span.style.display = 'inline-block';
-            if (result === 'correct') {
-                span.style.backgroundColor = 'green';
-            } else if (result === 'incorrect') {
-                span.style.backgroundColor = 'red';
-            }
-            progressBarElement.appendChild(span);
-        });
-    }
-}
+    const progressBarElement = document.getElementById('progress-bar');
+    if (progressBarElement && partTotalWords > 0) {
+        progressBarElement.innerHTML = ''; // Leere den vorherigen Inhalt
+        const wordWidthPercentage = 100 / partTotalWords;
+        answerHistory.forEach(result => {
+            const span = document.createElement('span');
+            span.style.width = `${wordWidthPercentage}%`;
+            span.style.display = 'inline-block';
+            span.style.height = '100%'; // Optionale HÃ¶he
 
+            if (result === 'correct') {
+                span.style.backgroundColor = 'green';
+            } else if (result === 'incorrect') {
+                span.style.backgroundColor = 'red';
+            } else {
+                span.style.backgroundColor = '#ddd'; // Optionale Farbe fÃ¼r noch nicht beantwortete
+            }
+            progressBarElement.appendChild(span);
+        });
+    }
+}
 function updateProgressText() {
     const correctCountElement = document.getElementById('correct-count');
     const totalInPartElement = document.getElementById('total-in-part');
