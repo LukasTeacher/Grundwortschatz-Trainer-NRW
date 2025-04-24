@@ -31,7 +31,64 @@ button {
 button:hover {
     background-color: #ffa726;
 }
+#results-container {
+    background-color: #fffde7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: left;
+}
 
+#results-container h2 {
+    color: #ef6c00;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#results-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#results-container th,
+#results-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#results-container th {
+    background-color: #ffcc80;
+    font-weight: bold;
+}
+
+#results-container input[type="text"] {
+    width: 100%;
+    padding: 6px;
+    margin-top: 5px;
+    border: 1px solid #ffb74d;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+#results-container button {
+    padding: 12px 25px;
+    font-size: 18px;
+    margin-top: 20px;
+    background-color: #4caf50; /* Grüne Farbe für "Weiter"-Button */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#results-container button:hover {
+    background-color: #45a049;
+}
 input {
     padding: 12px;
     margin: 15px auto; /* Zentrieren des Eingabefelds */
