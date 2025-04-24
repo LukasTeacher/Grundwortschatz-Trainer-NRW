@@ -438,7 +438,7 @@ function showResults() {
 
     const continueBtn = document.createElement('button');
     continueBtn.textContent = 'Weiter zum Spiel!';
-    continueBtn.addEventListener('click', showDesktopGameOptions);
+    continueBtn.addEventListener('click', showDesktopGameOptions); // Auskommentieren
     resultsContainer.appendChild(continueBtn);
     console.log('Button hinzugefügt:', continueBtn, 'zum resultsContainer:', resultsContainer); // HINZUGEFÜGT
 
