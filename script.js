@@ -24,6 +24,8 @@ let wordShown = false;
 let partCorrectCount = 0; // Zählt die korrekten Antworten im aktuellen Teil
 let partTotalWords = 0; // Speichert die Gesamtzahl der Wörter im aktuellen Teil
 let answerHistory = []; // Speichert den Verlauf der Antworten ('correct' oder 'incorrect')
+let wordDisplayTimeout; // Variable, um den Timeout zu speichern
+
 
 // Wortdaten
 const wordData = {
@@ -249,6 +251,11 @@ function showTrainingSections() {
 }
 
 function startExercise(sectionIndex, wordsPerPage) {
+    // Abbruch eines eventuell noch laufenden Timers
+    if (wordDisplayTimeout) {
+        clearTimeout(wordDisplayTimeout);
+    }
+
     const startIndex = sectionIndex * wordsPerPage;
     const endIndex = Math.min(startIndex + wordsPerPage, wordData[currentCategory].length);
     const selectedWords = wordData[currentCategory].slice(startIndex, endIndex);
@@ -257,11 +264,14 @@ function startExercise(sectionIndex, wordsPerPage) {
     correctAnswers = 0;
     wordDisplay.textContent = '';
     sentenceDisplay.textContent = '';
-    partCorrectCount = 0; // Zurücksetzen des korrekten Zählers für den neuen Teil
-    partTotalWords = currentWords.length; // Setzen der Gesamtzahl der Wörter für den Teil
-    answerHistory = []; // Zurücksetzen der Antwort-Historie für den neuen Teil
-    updateProgressBar(); // Initialen Fortschrittsbalken anzeigen (leer)
-    updateProgressText(); // Initialen Fortschrittszähler anzeigen (0 von X)
+    answerInput.style.display = 'none'; // Sicherstellen, dass das Eingabefeld ausgeblendet ist
+    answerInput.value = '';             // Eingabefeld zurücksetzen
+    feedbackDisplay.textContent = '';
+    partCorrectCount = 0;
+    partTotalWords = currentWords.length;
+    answerHistory = [];
+    updateProgressBar();
+    updateProgressText();
     console.log(`startExercise(Teil ${sectionIndex + 1}):`);
     console.log('  startIndex:', startIndex);
     console.log('  endIndex:', endIndex);
@@ -272,23 +282,24 @@ function startExercise(sectionIndex, wordsPerPage) {
     trainingContainer.style.display = 'none';
     exerciseContainer.style.display = 'block';
 }
+
 function showWord() {
     console.log('showWord() aufgerufen. currentWordIndex:', currentWordIndex, 'currentWords.length:', currentWords.length);
     const checkButton = document.getElementById('check-answer-btn');
-    checkButton.disabled = true; // Deaktiviere den Button beim Anzeigen des Wortes
+    checkButton.disabled = true;
 
     if (currentWordIndex < currentWords.length) {
         const currentWordData = currentWords[currentWordIndex];
         wordDisplay.textContent = currentWordData.word;
         wordShown = true;
-        setTimeout(() => {
+        wordDisplayTimeout = setTimeout(() => { // Speichere den Timeout in der Variablen
             wordDisplay.textContent = '';
             sentenceDisplay.textContent = currentWordData.sentence.replace('xxxx', '____');
             answerInput.style.display = 'block';
             answerInput.value = '';
             feedbackDisplay.textContent = '';
             wordShown = false;
-            checkButton.disabled = false; // Aktiviere den Button nach der Eingabeaufforderung
+            checkButton.disabled = false;
         }, 5000);
     } else {
         console.log('ALLE WÖRTER BEANTWORTET. Rufe showResults() auf.');
@@ -383,23 +394,34 @@ function showResults() {
     exerciseContainer.style.display = 'none';
     trainingContainer.style.display = 'block';
 }
-
 document.getElementById('back-to-start-btn').addEventListener('click', () => {
-    trainingContainer.style.display = 'none';
+    // Abbruch eines eventuell noch laufenden Timers
+    if (wordDisplayTimeout) {
+        clearTimeout(wordDisplayTimeout);
+    }
+    // Zurücksetzen der Anzeigen im Exercise-Container
+    wordDisplay.textContent = '';
+    sentenceDisplay.textContent = '';
+    answerInput.style.display = 'none';
+    answerInput.value = '';
+    feedbackDisplay.textContent = '';
+    exerciseContainer.style.display = 'none';
     startContainer.style.display = 'block';
 });
 
 document.getElementById('back-to-training-btn').addEventListener('click', () => {
+    // Abbruch eines eventuell noch laufenden Timers
+    if (wordDisplayTimeout) {
+        clearTimeout(wordDisplayTimeout);
+    }
+    // Zurücksetzen der Anzeigen im Exercise-Container
+    wordDisplay.textContent = '';
+    sentenceDisplay.textContent = '';
+    answerInput.style.display = 'none';
+    answerInput.value = '';
+    feedbackDisplay.textContent = '';
     exerciseContainer.style.display = 'none';
     trainingContainer.style.display = 'block';
-    sentenceDisplay.textContent = "";
-    answerInput.style.display = 'none';
-    feedbackDisplay.textContent = "";
-    wordDisplay.textContent = "";
-    wordShown = false;
-    currentWords = wordData[currentCategory];
-    showTrainingSections();
-    console.log('ZurÃ¼ck zum Training. currentWords:', currentWords);
 });
 
 trainingSections.addEventListener('click', (event) => {
