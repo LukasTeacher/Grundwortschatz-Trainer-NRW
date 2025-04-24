@@ -272,9 +272,11 @@ function startExercise(sectionIndex, wordsPerPage) {
     trainingContainer.style.display = 'none';
     exerciseContainer.style.display = 'block';
 }
-
 function showWord() {
-    console.log('showWord() aufgerufen. currentWordIndex:', currentWordIndex, 'currentWords.length:', currentWords.length); // HINZUGEFÜGT
+    console.log('showWord() aufgerufen. currentWordIndex:', currentWordIndex, 'currentWords.length:', currentWords.length);
+    const checkButton = document.getElementById('check-answer-btn');
+    checkButton.disabled = true; // Deaktiviere den Button beim Anzeigen des Wortes
+
     if (currentWordIndex < currentWords.length) {
         const currentWordData = currentWords[currentWordIndex];
         wordDisplay.textContent = currentWordData.word;
@@ -286,9 +288,10 @@ function showWord() {
             answerInput.value = '';
             feedbackDisplay.textContent = '';
             wordShown = false;
+            checkButton.disabled = false; // Aktiviere den Button nach der Eingabeaufforderung
         }, 5000);
     } else {
-        console.log('ALLE WÖRTER BEANTWORTET. Rufe showResults() auf.'); // HINZUGEFÜGT
+        console.log('ALLE WÖRTER BEANTWORTET. Rufe showResults() auf.');
         showResults();
     }
 }
