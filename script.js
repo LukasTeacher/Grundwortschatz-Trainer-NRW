@@ -294,9 +294,9 @@ function showWord() {
 }
 
 document.getElementById('check-answer-btn').addEventListener('click', () => {
-    console.log('Prüfen-Button wurde geklickt!');
-    console.log('  currentWordIndex (vor Prüfung):', currentWordIndex); // HINZUGEFÜGT
-    console.log('  currentWords.length (bei Prüfung):', currentWords.length); // HINZUGEFÜGT
+    const checkButton = document.getElementById('check-answer-btn');
+    checkButton.disabled = true;
+
     if (wordShown) {
         return;
     }
@@ -317,14 +317,23 @@ document.getElementById('check-answer-btn').addEventListener('click', () => {
     }
     updateProgressBar();
     updateProgressText();
-    setTimeout(() => {
-        sentenceDisplay.textContent = "";
-        feedbackDisplay.textContent = "";
-        answerInput.style.display = 'none';
-        currentWordIndex++;
-        console.log('  currentWordIndex (nach Timeout):', currentWordIndex); // HINZUGEFÜGT
-        showWord();
-    }, 2000);
+
+    // Überprüfe, ob dies das letzte Wort war
+    if (currentWordIndex === currentWords.length - 1) {
+        console.log('LETZTES WORT BEANTWORTET. Rufe showResults() direkt auf.');
+        showResults();
+        checkButton.disabled = false; // Re-enable button if needed after results
+    } else {
+        setTimeout(() => {
+            sentenceDisplay.textContent = "";
+            feedbackDisplay.textContent = "";
+            answerInput.style.display = 'none';
+            currentWordIndex++;
+            console.log('  currentWordIndex (nach Timeout):', currentWordIndex);
+            showWord();
+            checkButton.disabled = false;
+        }, 2000);
+    }
 });
 
 document.getElementById('next-word-btn').addEventListener('click', () => {
