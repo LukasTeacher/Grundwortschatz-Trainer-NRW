@@ -86,16 +86,14 @@ p {
 
 #progress-bar {
     height: 100%;
-    width: 0%; /* Anfangsbreite */
     border-radius: 10px;
-    display: flex; /* Für die farbigen Abschnitte */
+    display: flex; /* FÃ¼r die farbigen Abschnitte */
 }
 
 #progress-bar span {
     height: 100%;
     display: inline-block;
 }
-
 #progress-text {
     font-size: 1.1em; /* Etwas größer für bessere Lesbarkeit */
     color: #555;
