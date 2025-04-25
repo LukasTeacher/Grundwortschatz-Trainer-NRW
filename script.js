@@ -17,12 +17,12 @@ const totalInPartSpan = document.getElementById('total-in-part'); // Element fü
 
 let currentUser = null;
 let currentCategory = null;
-let currentWords = [];
-let currentWordIndex = 0;
+let currentwords = [];
+let currentwordIndex = 0;
 let correctAnswers = 0;
 let wordShown = false;
 let partCorrectCount = 0; // Zählt die korrekten Antworten im aktuellen Teil
-let partTotalWords = 0; // Speichert die Gesamtzahl der Wörter im aktuellen Teil
+let partTotalwords = 0; // Speichert die Gesamtzahl der Wörter im aktuellen Teil
 let answerHistory = []; // Speichert den Verlauf der Antworten ('correct' oder 'incorrect')
 let wordDisplayTimeout; // Variable, um den Timeout zu speichern
 
@@ -298,50 +298,50 @@ top100: [
   { nomen: "der Zoo", satz: "Der Zoo hat viele Tiere." }
 ], 
 merkwörter: [
-  { Word: "die Beere", Sentence: "Am Wegesrand entdeckte ich eine rote xxxx." },
-  { Word: "das Boot", Sentence: "Auf dem See schaukelte gemächlich das xxxx." },
-  { Word: "das Haar", Sentence: "Ein einzelnes blondes xxxx lag auf dem Kissen." },
-  { Word: "die Idee", Sentence: "Plötzlich hatte sie eine brillante xxxx." },
-  { Word: "das Meer", Sentence: "Wir machten Urlaub am rauschenden xxxx." },
-  { Word: "das Moos", Sentence: "Der Waldboden war bedeckt von weichem xxxx." },
-  { Word: "der See", Sentence: "Im Sommer baden wir gerne in dem klaren xxxx." },
-  { Word: "der Tee", Sentence: "Zum Frühstück trinke ich immer eine Tasse xxxx." },
-  { Word: "der Zoo", Sentence: "Am Wochenende besuchen wir den xxxx." },
-  { Word: "ihm", Sentence: "Das Geschenk gefiel xxxx sehr gut." },
-  { Word: "ihn", Sentence: "Hast du xxxx gestern im Park gesehen?" },
-  { Word: "ihr", Sentence: "Das neue Kleid stand xxxx ausgezeichnet." },
-  { Word: "im", Sentence: "xxxx Garten blühten bunte Blumen." },
-  { Word: "in", Sentence: "Die Katze versteckte sich xxxx der Kiste." },
-  { Word: "der Bär", Sentence: "Im Wald sahen wir einen großen braunen xxxx." },
-  { Word: "der Käfer", Sentence: "Auf der Blüte krabbelte ein kleiner xxxx." },
-  { Word: "der Käse", Sentence: "Zum Abendbrot aßen wir Brot mit leckerem xxxx." },
-  { Word: "der Lärm", Sentence: "Der xxxx auf der Straße war unerträglich." },
-  { Word: "das Mädchen", Sentence: "Das kleine xxxx spielte im Sandkasten." },
-  { Word: "der März", Sentence: "Im xxxx beginnt der Frühling." },
-  { Word: "fleißig", Sentence: "Die Schülerin arbeitete sehr xxxx an ihrem Projekt." },
-  { Word: "der Fuß", Sentence: "Ich trat barfuß auf den kalten xxxx." },
-  { Word: "der Gruß", Sentence: "Sie schickte uns einen lieben xxxx aus dem Urlaub." },
-  { Word: "heiß", Sentence: "Die Suppe war noch sehr xxxx." },
-  { Word: "heißen", Sentence: "Die Kinder begannen laut xxxx." },
-  { Word: "der Spaß", Sentence: "Wir hatten viel xxxx beim Spielen." },
-  { Word: "süß", Sentence: "Die Erdbeeren schmeckten wunderbar xxxx." },
-  { Word: "die Vase", Sentence: "Auf dem Tisch stand eine xxxx mit bunten Blumen." },
-  { Word: "vier", Sentence: "Wir trafen uns um xxxx Uhr." },
-  { Word: "der Vogel", Sentence: "Ein bunter xxxx sang im Baum." },
-  { Word: "voll", Sentence: "Der Bus war sehr xxxx mit Menschen." },
-  { Word: "vorbei", Sentence: "Die Zeit ging viel zu schnell xxxx." },
-  { Word: "der Vulkan", Sentence: "Der xxxx brach vor langer Zeit aus." },
-  { Word: "der Verkäufer", Sentence: "Der freundliche xxxx beriet uns gut." },
-  { Word: "der Verkehr", Sentence: "Der xxxx auf der Autobahn war stockend." },
-  { Word: "der Vorname", Sentence: "Ihr xxxx ist ungewöhnlich." },
-  { Word: "das Baby", Sentence: "Das kleine xxxx schlief friedlich." },
-  { Word: "der Clown", Sentence: "Der lustige xxxx brachte alle zum Lachen." },
-  { Word: "die E-Mail", Sentence: "Ich habe dir eine xxxx geschickt." },
-  { Word: "die Pizza", Sentence: "Zum Mittagessen bestellen wir eine leckere xxxx." },
-  { Word: "das Tablet", Sentence: "Mit dem xxxx kann man gut im Internet surfen." },
-  { Word: "der Teddy", Sentence: "Das Kind kuschelte mit seinem weichen xxxx." },
-  { Word: "sechs", Sentence: "Wir waren xxxx Freunde, die sich trafen." },
-  { Word: "zehn", Sentence: "In der Gruppe waren genau xxxx Personen." }
+  { word: "die Beere", sentence: "Am Wegesrand entdeckte ich eine rote xxxx." },
+  { word: "das Boot", sentence: "Auf dem See schaukelte gemächlich das xxxx." },
+  { word: "das Haar", sentence: "Ein einzelnes blondes xxxx lag auf dem Kissen." },
+  { word: "die Idee", sentence: "Plötzlich hatte sie eine brillante xxxx." },
+  { word: "das Meer", sentence: "Wir machten Urlaub am rauschenden xxxx." },
+  { word: "das Moos", sentence: "Der Waldboden war bedeckt von weichem xxxx." },
+  { word: "der See", sentence: "Im Sommer baden wir gerne in dem klaren xxxx." },
+  { word: "der Tee", sentence: "Zum Frühstück trinke ich immer eine Tasse xxxx." },
+  { word: "der Zoo", sentence: "Am Wochenende besuchen wir den xxxx." },
+  { word: "ihm", sentence: "Das Geschenk gefiel xxxx sehr gut." },
+  { word: "ihn", sentence: "Hast du xxxx gestern im Park gesehen?" },
+  { word: "ihr", sentence: "Das neue Kleid stand xxxx ausgezeichnet." },
+  { word: "im", sentence: "xxxx Garten blühten bunte Blumen." },
+  { word: "in", sentence: "Die Katze versteckte sich xxxx der Kiste." },
+  { word: "der Bär", sentence: "Im Wald sahen wir einen großen braunen xxxx." },
+  { word: "der Käfer", sentence: "Auf der Blüte krabbelte ein kleiner xxxx." },
+  { word: "der Käse", sentence: "Zum Abendbrot aßen wir Brot mit leckerem xxxx." },
+  { word: "der Lärm", sentence: "Der xxxx auf der Straße war unerträglich." },
+  { word: "das Mädchen", sentence: "Das kleine xxxx spielte im Sandkasten." },
+  { word: "der März", sentence: "Im xxxx beginnt der Frühling." },
+  { word: "fleißig", sentence: "Die Schülerin arbeitete sehr xxxx an ihrem Projekt." },
+  { word: "der Fuß", sentence: "Ich trat barfuß auf den kalten xxxx." },
+  { word: "der Gruß", sentence: "Sie schickte uns einen lieben xxxx aus dem Urlaub." },
+  { word: "heiß", sentence: "Die Suppe war noch sehr xxxx." },
+  { word: "heißen", sentence: "Die Kinder begannen laut xxxx." },
+  { word: "der Spaß", sentence: "Wir hatten viel xxxx beim Spielen." },
+  { word: "süß", sentence: "Die Erdbeeren schmeckten wunderbar xxxx." },
+  { word: "die Vase", sentence: "Auf dem Tisch stand eine xxxx mit bunten Blumen." },
+  { word: "vier", sentence: "Wir trafen uns um xxxx Uhr." },
+  { word: "der Vogel", sentence: "Ein bunter xxxx sang im Baum." },
+  { word: "voll", sentence: "Der Bus war sehr xxxx mit Menschen." },
+  { word: "vorbei", sentence: "Die Zeit ging viel zu schnell xxxx." },
+  { word: "der Vulkan", sentence: "Der xxxx brach vor langer Zeit aus." },
+  { word: "der Verkäufer", sentence: "Der freundliche xxxx beriet uns gut." },
+  { word: "der Verkehr", sentence: "Der xxxx auf der Autobahn war stockend." },
+  { word: "der Vorname", sentence: "Ihr xxxx ist ungewöhnlich." },
+  { word: "das Baby", sentence: "Das kleine xxxx schlief friedlich." },
+  { word: "der Clown", sentence: "Der lustige xxxx brachte alle zum Lachen." },
+  { word: "die E-Mail", sentence: "Ich habe dir eine xxxx geschickt." },
+  { word: "die Pizza", sentence: "Zum Mittagessen bestellen wir eine leckere xxxx." },
+  { word: "das Tablet", sentence: "Mit dem xxxx kann man gut im Internet surfen." },
+  { word: "der Teddy", sentence: "Das Kind kuschelte mit seinem weichen xxxx." },
+  { word: "sechs", sentence: "Wir waren xxxx Freunde, die sich trafen." },
+  { word: "zehn", sentence: "In der Gruppe waren genau xxxx Personen." }
 ]
 
 
@@ -382,7 +382,7 @@ startContainer.addEventListener('click', (event) => {
         currentCategory = event.target.dataset.category;
         console.log('Ausgewählte Kategorie:', currentCategory);
         console.log('Daten für Kategorie:', wordData[currentCategory]);
-        currentWords = wordData[currentCategory];
+        currentwords = wordData[currentCategory];
         showTrainingSections();
         startContainer.style.display = 'none';
         trainingContainer.style.display = 'block';
@@ -390,10 +390,10 @@ startContainer.addEventListener('click', (event) => {
 });
 
 function showTrainingSections() {
-    console.log('showTrainingSections aufgerufen. currentWords (Länge):', currentWords ? currentWords.length : 0, currentWords);
+    console.log('showTrainingSections aufgerufen. currentwords (Länge):', currentwords ? currentwords.length : 0, currentwords);
     trainingSections.innerHTML = '';
     const wordsPerPage = 10; // Anzahl der Wörter pro Teil
-    const numSections = Math.ceil(currentWords.length / wordsPerPage);
+    const numSections = Math.ceil(currentwords.length / wordsPerPage);
     for (let i = 0; i < numSections; i++) {
         const sectionBtn = document.createElement('button');
         sectionBtn.textContent = `Teil ${i + 1}`;
@@ -411,9 +411,9 @@ function startExercise(sectionIndex, wordsPerPage) {
 
     const startIndex = sectionIndex * wordsPerPage;
     const endIndex = Math.min(startIndex + wordsPerPage, wordData[currentCategory].length);
-    const selectedWords = wordData[currentCategory].slice(startIndex, endIndex);
-    currentWords = selectedWords;
-    currentWordIndex = 0;
+    const selectedwords = wordData[currentCategory].slice(startIndex, endIndex);
+    currentwords = selectedwords;
+    currentwordIndex = 0;
     correctAnswers = 0;
     wordDisplay.textContent = '';
     sentenceDisplay.textContent = '';
@@ -421,33 +421,33 @@ function startExercise(sectionIndex, wordsPerPage) {
     answerInput.value = '';             // Eingabefeld zurücksetzen
     feedbackDisplay.textContent = '';
     partCorrectCount = 0;
-    partTotalWords = currentWords.length;
+    partTotalwords = currentwords.length;
     answerHistory = [];
     updateProgressBar();
     updateProgressText();
     console.log(`startExercise(Teil ${sectionIndex + 1}):`);
     console.log('  startIndex:', startIndex);
     console.log('  endIndex:', endIndex);
-    console.log('  selectedWords (Länge):', selectedWords.length, selectedWords);
-    console.log('  currentWords (Länge nach Slice):', currentWords.length, currentWords);
-    console.log('  currentWordIndex:', currentWordIndex);
-    showWord();
+    console.log('  selectedwords (Länge):', selectedwords.length, selectedwords);
+    console.log('  currentwords (Länge nach Slice):', currentwords.length, currentwords);
+    console.log('  currentwordIndex:', currentwordIndex);
+    showword();
     trainingContainer.style.display = 'none';
     exerciseContainer.style.display = 'block';
 }
 
-function showWord() {
-    console.log('showWord() aufgerufen. currentWordIndex:', currentWordIndex, 'currentWords.length:', currentWords.length);
+function showword() {
+    console.log('showword() aufgerufen. currentwordIndex:', currentwordIndex, 'currentwords.length:', currentwords.length);
     const checkButton = document.getElementById('check-answer-btn');
     checkButton.disabled = true;
 
-    if (currentWordIndex < currentWords.length) {
-        const currentWordData = currentWords[currentWordIndex];
-        wordDisplay.textContent = currentWordData.word;
+    if (currentwordIndex < currentwords.length) {
+        const currentwordData = currentwords[currentwordIndex];
+        wordDisplay.textContent = currentwordData.word;
         wordShown = true;
         wordDisplayTimeout = setTimeout(() => { // Speichere den Timeout in der Variablen
             wordDisplay.textContent = '';
-            sentenceDisplay.textContent = currentWordData.sentence.replace('xxxx', '____');
+            sentenceDisplay.textContent = currentwordData.sentence.replace('xxxx', '____');
             answerInput.style.display = 'block';
             answerInput.value = '';
             feedbackDisplay.textContent = '';
@@ -464,23 +464,23 @@ document.getElementById('check-answer-btn').addEventListener('click', () => {
     const checkButton = document.getElementById('check-answer-btn');
     checkButton.disabled = true;
 
-    console.log('Prüfen-Button geklickt. currentWordIndex:', currentWordIndex, 'currentWords.length:', currentWords.length); // ERWEITERT
+    console.log('Prüfen-Button geklickt. currentwordIndex:', currentwordIndex, 'currentwords.length:', currentwords.length); // ERWEITERT
 
     if (wordShown) {
         return;
     }
     const answer = answerInput.value.trim();
-    const correctWord = currentWords[currentWordIndex].word.trim();
-    const correctWordWithoutArticle = correctWord.replace(/^(der|die|das)\s+/i, '');
+    const correctword = currentwords[currentwordIndex].word.trim();
+    const correctwordWithoutArticle = correctword.replace(/^(der|die|das)\s+/i, '');
 
-    if (answer === correctWordWithoutArticle) {
+    if (answer === correctwordWithoutArticle) {
         feedbackDisplay.textContent = 'Richtig!';
         feedbackDisplay.className = 'correct';
         correctAnswers++;
         partCorrectCount++;
         answerHistory.push('correct');
     } else {
-        feedbackDisplay.textContent = `Falsch! Richtig wäre: ${currentWords[currentWordIndex].word}`;
+        feedbackDisplay.textContent = `Falsch! Richtig wäre: ${currentwords[currentwordIndex].word}`;
         feedbackDisplay.className = 'incorrect';
         answerHistory.push('incorrect');
     }
@@ -488,7 +488,7 @@ document.getElementById('check-answer-btn').addEventListener('click', () => {
     updateProgressText();
 
     // Überprüfe, ob dies das letzte Wort war
-    if (currentWordIndex === currentWords.length - 1) {
+    if (currentwordIndex === currentwords.length - 1) {
         console.log('LETZTES WORT ERREICHT. Rufe showResults() direkt auf.');
         showResults();
         checkButton.disabled = false; // Re-enable button if needed after results
@@ -497,25 +497,25 @@ document.getElementById('check-answer-btn').addEventListener('click', () => {
             sentenceDisplay.textContent = "";
             feedbackDisplay.textContent = "";
             answerInput.style.display = 'none';
-            currentWordIndex++;
-            console.log('  currentWordIndex (nach Timeout):', currentWordIndex);
-            showWord();
+            currentwordIndex++;
+            console.log('  currentwordIndex (nach Timeout):', currentwordIndex);
+            showword();
             checkButton.disabled = false;
         }, 2000);
     }
 });
 
 document.getElementById('next-word-btn').addEventListener('click', () => {
-    currentWordIndex++;
-    console.log('Nächstes Wort geklickt. currentWordIndex:', currentWordIndex); // HINZUGEFÜGT
-    showWord();
+    currentwordIndex++;
+    console.log('Nächstes Wort geklickt. currentwordIndex:', currentwordIndex); // HINZUGEFÜGT
+    showword();
 });
 
 function updateProgressBar() {
     const progressBarElement = document.getElementById('progress-bar');
-    if (progressBarElement && partTotalWords > 0) {
+    if (progressBarElement && partTotalwords > 0) {
         progressBarElement.innerHTML = ''; // Leere den vorherigen Inhalt
-        const wordWidthPercentage = 100 / partTotalWords;
+        const wordWidthPercentage = 100 / partTotalwords;
         answerHistory.forEach(result => {
             const span = document.createElement('span');
             span.style.width = `${wordWidthPercentage}%`;
@@ -538,12 +538,12 @@ function updateProgressText() {
     const totalInPartElement = document.getElementById('total-in-part');
     if (correctCountElement && totalInPartElement) {
         correctCountElement.textContent = partCorrectCount;
-        totalInPartElement.textContent = partTotalWords;
+        totalInPartElement.textContent = partTotalwords;
     }
 }
 
 function showResults() {
-    alert(`Du hast ${correctAnswers} von ${currentWords.length} Wörtern richtig.`);
+    alert(`Du hast ${correctAnswers} von ${currentwords.length} Wörtern richtig.`);
     exerciseContainer.style.display = 'none';
     trainingContainer.style.display = 'block';
 }
