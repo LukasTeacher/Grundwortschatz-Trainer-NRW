@@ -296,7 +296,8 @@ top100: [
   { nomen: "das Zimmer", satz: "Das Zimmer ist groß und hell." },
   { nomen: "die Zitrone", satz: "Die Zitrone schmeckt sehr sauer." },
   { nomen: "der Zoo", satz: "Der Zoo hat viele Tiere." }
-], merkwörter: [
+], 
+merkwörter: [
   { Word: "die Beere", Sentence: "Am Wegesrand entdeckte ich eine rote xxxx." },
   { Word: "das Boot", Sentence: "Auf dem See schaukelte gemächlich das xxxx." },
   { Word: "das Haar", Sentence: "Ein einzelnes blondes xxxx lag auf dem Kissen." },
