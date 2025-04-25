@@ -190,7 +190,7 @@ top100: [
     { word: 'diese', sentence: 'Möchtest du xxxx Hose.' },
     { word: 'euch', sentence: 'Ich habe xxxx gesehen.' },
     { word: 'alle', sentence: 'Ich habe xxxx eingeladen.' },
-],nomen mittel: [
+],nomen2: [
   { nomen: "der Abend", satz: "Der Abend war sehr schön." },
   { nomen: "der Affe", satz: "Der Affe im Zoo ist sehr lustig." },
   { nomen: "die Angst", satz: "Ich habe Angst vor Spinnen." },
