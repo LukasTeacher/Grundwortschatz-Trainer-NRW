@@ -341,7 +341,7 @@ top100: [
   { Word: "der Teddy", Sentence: "Das Kind kuschelte mit seinem weichen xxxx." },
   { Word: "sechs", Sentence: "Wir waren xxxx Freunde, die sich trafen." },
   { Word: "zehn", Sentence: "In der Gruppe waren genau xxxx Personen." }
-];
+]
 
 
     // Hier könnten weitere Kategorien wie 'verben' etc. folgen
