@@ -267,6 +267,7 @@ document.getElementById('register-btn').addEventListener('click', () => {
 document.getElementById('logout-btn').addEventListener('click', () => {
     currentUser = null;
     startContainer.style.display = 'none';
+    trainingContainer.style.display = 'none';
     loginContainer.style.display = 'block';
 });
 
@@ -450,6 +451,7 @@ document.getElementById('back-to-start-btn').addEventListener('click', () => {
     answerInput.value = '';
     feedbackDisplay.textContent = '';
     exerciseContainer.style.display = 'none';
+    trainingContainer.style.display = 'none';
     startContainer.style.display = 'block';
 });
 
