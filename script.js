@@ -297,36 +297,34 @@ function showTrainingSections() {
 }
 
 function startExercise(sectionIndex, wordsPerPage) {
-    // Abbruch eines eventuell noch laufenden Timers
-    if (wordDisplayTimeout) {
-        clearTimeout(wordDisplayTimeout);
-    }
+    // Abbruch eines eventuell noch laufenden Timers
+    if (wordDisplayTimeout) {
+        clearTimeout(wordDisplayTimeout);
+    }
 
-    const startIndex = sectionIndex * wordsPerPage;
-    const endIndex = Math.min(startIndex + wordsPerPage, wordData[currentCategory].length);
-    const selectedwords = wordData[currentCategory].slice(startIndex, endIndex);
-    currentwords = selectedwords;
-    currentwordIndex = 0;
-    correctAnswers = 0;
-    wordDisplay.textContent = '';
-    sentenceDisplay.textContent = '';
-    answerInput.style.display = 'none'; // Sicherstellen, dass das Eingabefeld ausgeblendet ist
-    answerInput.value = '';             // Eingabefeld zurücksetzen
-    feedbackDisplay.textContent = '';
-    partCorrectCount = 0;
-    partTotalwords = currentwords.length;
-    answerHistory = [];
-    updateProgressBar();
-    updateProgressText();
-    console.log(`startExercise(Teil ${sectionIndex + 1}):`);
-    console.log('  startIndex:', startIndex);
-    console.log('  endIndex:', endIndex);
-    console.log('  selectedwords (Länge):', selectedwords.length, selectedwords);
-    console.log('  currentwords (Länge nach Slice):', currentwords.length, currentwords);
-    console.log('  currentwordIndex:', currentwordIndex);
-    showword();
-    trainingContainer.style.display = 'none';
-    exerciseContainer.style.display = 'block';
+    const startIndex = sectionIndex * wordsPerPage;
+    const endIndex = Math.min(startIndex + wordsPerPage, wordData[currentCategory].length);
+    currentwords = wordData[currentCategory].slice(startIndex, endIndex); // Verwende die globale Variable direkt
+    currentwordIndex = 0;
+    correctAnswers = 0;
+    wordDisplay.textContent = '';
+    sentenceDisplay.textContent = '';
+    answerInput.style.display = 'none';
+    answerInput.value = '';
+    feedbackDisplay.textContent = '';
+    partCorrectCount = 0;
+    partTotalwords = currentwords.length; // Verwende die globale Variable hier
+    answerHistory = [];
+    updateProgressBar();
+    updateProgressText();
+    console.log(`startExercise(Teil ${sectionIndex + 1}):`);
+    console.log('  startIndex:', startIndex);
+    console.log('  endIndex:', endIndex);
+    console.log('  currentwords (Länge nach Slice):', currentwords.length, currentwords);
+    console.log('  currentwordIndex:', currentwordIndex);
+    showword();
+    trainingContainer.style.display = 'none';
+    exerciseContainer.style.display = 'block';
 }
 
 function showword() {
